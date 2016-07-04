@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <beans>
+        <!--应用场景：工程组中有多个配置文件，但是这些配置文件在多个地方使用，所以需要分别加载。-->
+        <!-- 将DB属性配置文件位置放到列表中 -->
+        <bean id="dbResources" class="java.util.ArrayList">
+            <constructor-arg>
+                <list>
+                    <!--<value>file:/opt/demo/config/demo-db.properties</value>-->
+                </list>
+            </constructor-arg>
+        </bean>
+
+        <!-- 将MQ属性配置文件位置放到列表中 -->
+        <bean id="mqResources" class="java.util.ArrayList">
+            <constructor-arg>
+                <list>
+                    <!--<value>file:/opt/demo/config/demo-mq.properties</value>-->
+                </list>
+            </constructor-arg>
+        </bean>
+
+        <!-- 用Spring加载和管理DB属性配置文件 -->
+        <bean id="dbPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="order" value="1"/>
+            <property name="ignoreUnresolvablePlaceholders" value="true"/>
+            <property name="locations" ref="dbResources"/>
+        </bean>
+
+        <!-- 用Spring加载和管理MQ属性配置文件 -->
+        <bean id="mqPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="order" value="2"/>
+            <!--<property name="ignoreUnresolvablePlaceholders" value="true"/>-->
+            <property name="locations" ref="mqResources"/>
+        </bean>
+
+        <!-- 使用DB中的配置属性 -->
+        <!--<bean id="rmsDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"-->
+              <!--p:driverClassName="${demo.db.driver}" p:url="${demo.db.url}" p:username="${demo.db.username}"-->
+              <!--p:password="${demo.db.password}" pp:maxActive="${demo.db.maxactive}" p:maxWait="${demo.db.maxwait}"-->
+              <!--p:poolPreparedStatements="true" p:defaultAutoCommit="false">-->
+        <!--</bean>-->
+
+        <!-- 使用MQ中的配置 -->
+        <bean id="MQJndiTemplate" class="org.springframework.jndi.JndiTemplate">
+            <property name="environment">
+                <props>
+                    <prop key="java.naming.factory.initial">${mq.java.naming.factory.initial}</prop>
+                    <prop key="java.naming.provider.url">${mq.java.naming.provider.url}</prop>
+                    <prop key="java.naming.security.principal">${mq.java.naming.security.principal}</prop>
+                    <prop key="java.naming.security.credentials">${mq.java.naming.security.credentials}</prop>
+                    <prop key="userName">${mq.java.naming.security.principal}</prop>
+                    <prop key="password">${mq.java.naming.security.credentials}</prop>
+                </props>
+            </property>
+        </bean>
+    </beans>
+</beans>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <beans>
+
+        <!-- 将多个配置文件读取到容器中，交给Spring管理 -->
+        <!--<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
+        <!--<property name="locations">-->
+        <!--<list>-->
+        <!--&lt;!&ndash; 这里支持多种寻址方式：classpath和file &ndash;&gt;-->
+        <!--<value>classpath:/opt/demo/config/demo-db.properties</value>-->
+        <!--&lt;!&ndash; 推荐使用file的方式引入，这样可以将配置和代码分离 &ndash;&gt;-->
+        <!--<value>file:/opt/demo/config/demo-mq.properties</value>-->
+        <!--<value>file:/opt/demo/config/demo-remote.properties</value>-->
+        <!--</list>-->
+        <!--</property>-->
+        <!--</bean>-->
+        <!--将配置文件从上面的配置中分离出来-->
+        <!-- 将多个配置文件位置放到列表中 -->
+        <bean id="propertyResources" class="java.util.ArrayList">
+            <constructor-arg>
+                <list>
+                    <!-- 这里支持多种寻址方式：classpath和file -->
+                    <value>classpath:/opt/demo/config/demo-db.properties</value>
+                    <!-- 推荐使用file的方式引入，这样可以将配置和代码分离 -->
+                    <value>file:/opt/demo/config/demo-mq.properties</value>
+                    <value>file:/opt/demo/config/demo-remote.properties</value>
+                </list>
+            </constructor-arg>
+        </bean>
+        <!-- 将多个配置文件读取到容器中，交给Spring管理 -->
+        <!-- 将配置文件读取到容器中，交给Spring管理 -->
+        <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="locations" ref="propertyResources"/>
+        </bean>
+
+        <!-- 使用MQ中的配置 -->
+        <bean id="MQJndiTemplate" class="org.springframework.jndi.JndiTemplate">
+            <property name="environment">
+                <props>
+                    <prop key="java.naming.factory.initial">${mq.java.naming.factory.initial}</prop>
+                    <prop key="java.naming.provider.url">${mq.java.naming.provider.url}</prop>
+                    <prop key="java.naming.security.principal">${mq.java.naming.security.principal}</prop>
+                    <prop key="java.naming.security.credentials">${mq.java.naming.security.credentials}</prop>
+                    <prop key="userName">${mq.java.naming.security.principal}</prop>
+                    <prop key="password">${mq.java.naming.security.credentials}</prop>
+                </props>
+            </property>
+        </bean>
+    </beans>
+</beans>

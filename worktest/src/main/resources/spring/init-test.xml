@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="initializeData" class="com.mw.java.test.initdata.InitializeData">
+        <property name="configFileData">
+            <map value-type="java.lang.String">
+                <entry key="redis_expire_time" value="1800" />
+                <entry key="wage_growth_rate" value="0.00" />
+                <entry key="investment_rate" value="0.03" />
+                <entry key="inflation_rate" value="0.03" />
+                <entry key="email_expired_time" value="30" />
+                <entry key="spv_withdrawCash" value="8"/>
+                <entry key="recharge_rate" value="0.002"/>
+            </map>
+        </property>
+    </bean>
+
+</beans>
