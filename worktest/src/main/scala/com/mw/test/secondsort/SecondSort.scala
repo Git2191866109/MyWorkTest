@@ -21,7 +21,17 @@ object SecondSort {
       val arrsx = line.split("  ")
       (new SecondSortKey(arrsx(0).toInt, arrsx(1).toInt), line)
     })
-
+    pairWithKey.collect().foreach(e => {
+      println(e)
+    })
+    /*输出形式*/
+ /* (com.mw.test.secondsort.SecondSortKey@1455154c,4  1)
+    (com.mw.test.secondsort.SecondSortKey@7343922c,2  5)
+    (com.mw.test.secondsort.SecondSortKey@526b2f3e,4  3)
+    (com.mw.test.secondsort.SecondSortKey@6f2e1024,1  2)
+    (com.mw.test.secondsort.SecondSortKey@536d97f8,1  5)
+    (com.mw.test.secondsort.SecondSortKey@3c50ad4b,3  5)
+    (com.mw.test.secondsort.SecondSortKey@37496720,3  2)*/
     /*sortByKey必须是key-value形式*/
     val sorted = pairWithKey.sortByKey(true)
     val sortedResult = sorted.map(sortedLine => sortedLine._2)
