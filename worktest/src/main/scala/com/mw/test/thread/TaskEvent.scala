@@ -1,6 +1,5 @@
 package com.mw.test.thread
 
-
 trait TaskEvent
 
 case class TaskSubmitted(name: String) extends TaskEvent
