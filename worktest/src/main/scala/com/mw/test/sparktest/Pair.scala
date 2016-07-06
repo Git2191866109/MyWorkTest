@@ -1,4 +1,4 @@
-package com.mw.test
+package com.mw.test.sparktest
 
 /**
   * Created by ZX on 2016/4/12.

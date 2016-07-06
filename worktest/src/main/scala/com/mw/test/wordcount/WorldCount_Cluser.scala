@@ -1,4 +1,4 @@
-package com.mw.test
+package com.mw.test.wordcount
 
 import org.apache.spark.{SparkConf, SparkContext}
 

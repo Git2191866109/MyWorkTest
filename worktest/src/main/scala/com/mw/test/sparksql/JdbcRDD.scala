@@ -28,12 +28,15 @@ object JdbcRDD {
     val personDataFrame = sqlContext.createDataFrame(rowRDD, schema)
     println(personDataFrame.collect().toBuffer)
     //创建Properties存储数据库相关属性
-//    val prop = new Properties()
-//    prop.put("user", "root")
-//    prop.put("password", "123456")
+    val prop = new Properties()
+    prop.put("user", "root")
+    prop.put("password", "123456")
 //
     //将数据追加到数据库
-//    personDataFrame.write.mode("append").jdbc("jdbc:mysql://172.16.0.1:3306/bigdata", "bigdata.person", prop)
+    personDataFrame.write.mode("append").jdbc("jdbc:mysql://127.0.0.1:3306/sparkdb", "t_person", prop)
+    val df = sqlContext.sql("select * from t_person order by age desc limit 4")
+
+    df.write.json("E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\sparksql")
     //停止SparkContext
     sc.stop()
   }

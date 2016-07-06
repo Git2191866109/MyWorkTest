@@ -7,7 +7,7 @@ import org.apache.spark.{SparkContext, SparkConf}
 object SpecifyingSchema {
   def main(args: Array[String]) {
     //创建SparkConf()并设置App名称
-    val conf = new SparkConf().setAppName("SQL-2")
+    val conf = new SparkConf().setAppName("SQL-2").setMaster("local")
     //SQLContext要依赖SparkContext
     val sc = new SparkContext(conf)
     //创建SQLContext
@@ -31,7 +31,7 @@ object SpecifyingSchema {
     //执行SQL
     val df = sqlContext.sql("select * from t_person order by age desc limit 4")
     //将结果以JSON的方式存储到指定位置
-    df.write.json(args(1))
+    df.write.json("E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\sparksql")
     //停止Spark Context
     sc.stop()
   }

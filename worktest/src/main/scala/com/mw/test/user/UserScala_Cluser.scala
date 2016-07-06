@@ -1,11 +1,11 @@
-package com.mw.test
+package com.mw.test.user
 
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
   * Created by mawei on 2016/6/17.
   */
-object UserScala {
+object UserScala_Cluser {
   def main(args: Array[String]) {
     val inPath = "E:\\TestWork\\src\\main\\resources\\source\\usertuijian"
     //    val inPath = "E:\\TestWork\\src\\main\\resources\\source\\q"
