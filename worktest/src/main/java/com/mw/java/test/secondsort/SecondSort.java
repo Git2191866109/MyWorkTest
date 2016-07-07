@@ -43,7 +43,7 @@ public class SecondSort {
         JavaRDD<String> sortResult = sorted.map(new Function<Tuple2<SecondSortKey, String>, String>() {
             @Override
             public String call(Tuple2<SecondSortKey, String> sortContext) throws Exception {
-                return sortContext._2;
+                return sortContext._2();
             }
         });
         /*输出排序的结果*/

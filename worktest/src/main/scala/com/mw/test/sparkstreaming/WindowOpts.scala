@@ -3,9 +3,6 @@ package com.mw.test.sparkstreaming
 import org.apache.spark.streaming.{Milliseconds, Seconds, StreamingContext}
 import org.apache.spark.{HashPartitioner, SparkConf}
 
-/**
-  * Created by ZX on 2016/4/19.
-  */
 object WindowOpts {
 
   def main(args: Array[String]) {

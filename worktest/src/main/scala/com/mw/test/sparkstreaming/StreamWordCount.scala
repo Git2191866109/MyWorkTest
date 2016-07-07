@@ -4,9 +4,6 @@ import org.apache.spark.SparkConf
 import org.apache.spark.api.java.StorageLevels
 import org.apache.spark.streaming.{Milliseconds, StreamingContext}
 
-/**
-  * Created by ZX on 2016/4/19.
-  */
 object StreamWordCount {
 
   def main(args: Array[String]) {

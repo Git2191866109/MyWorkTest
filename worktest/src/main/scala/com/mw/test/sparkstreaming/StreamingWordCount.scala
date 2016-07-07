@@ -12,9 +12,9 @@ object StreamingWordCount {
     val dstream = ssc.socketTextStream("172.16.0.11", 9999)
     val resutls = dstream.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_+_)
     resutls.print()
-    //    dstream.foreachRDD(rdd => {
-//      rdd.foreach(println(_))
-//    })
+    dstream.foreachRDD(rdd => {
+      rdd.foreach(println(_))
+    })
     ssc.start()
     ssc.awaitTermination()
   }

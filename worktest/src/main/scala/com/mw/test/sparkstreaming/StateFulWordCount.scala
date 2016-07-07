@@ -4,9 +4,6 @@ import org.apache.spark.{HashPartitioner, SparkConf}
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.streaming.{Milliseconds, Seconds, StreamingContext}
 
-/**
-  * Created by ZX on 2016/4/18.
-  */
 object StateFulWordCount {
 
 //  val func = (it: Iterator[(String, Seq[Int], Option[Int])]) => {
