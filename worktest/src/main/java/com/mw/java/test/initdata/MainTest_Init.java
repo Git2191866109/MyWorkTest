@@ -45,7 +45,6 @@ public class MainTest_Init {
         String result = "";
         if (initializeData != null) {
             List<Object> dmList = configFileData.get("wage_growth_rate");
-            //如果没有找到匹配的appid，认为是非法访问，进入错误页
             if (dmList != null) {
                 for (Object obj : dmList) {
                     if (obj instanceof String) {

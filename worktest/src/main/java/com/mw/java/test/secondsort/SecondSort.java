@@ -39,19 +39,19 @@ public class SecondSort {
                 System.out.println(secondSortKeyStringTuple2);
             }
         });
-//        /*过滤掉排序后自定义的key，保留排序的结果*/
-//        JavaRDD<String> sortResult = sorted.map(new Function<Tuple2<SecondSortKey, String>, String>() {
-//            @Override
-//            public String call(Tuple2<SecondSortKey, String> sortContext) throws Exception {
-//                return sortContext._2;
-//            }
-//        });
-//        /*输出排序的结果*/
-//        sortResult.foreach(new VoidFunction<String>() {
-//            @Override
-//            public void call(String sortResult) throws Exception {
-//                System.out.println(sortResult);
-//            }
-//        });
+        /*过滤掉排序后自定义的key，保留排序的结果*/
+        JavaRDD<String> sortResult = sorted.map(new Function<Tuple2<SecondSortKey, String>, String>() {
+            @Override
+            public String call(Tuple2<SecondSortKey, String> sortContext) throws Exception {
+                return sortContext._2;
+            }
+        });
+        /*输出排序的结果*/
+        sortResult.foreach(new VoidFunction<String>() {
+            @Override
+            public void call(String sortResult) throws Exception {
+                System.out.println(sortResult);
+            }
+        });
     }
 }

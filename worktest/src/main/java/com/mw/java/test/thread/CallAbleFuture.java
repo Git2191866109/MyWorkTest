@@ -11,7 +11,7 @@ public class CallAbleFuture {
         Future<String> future = executorService.submit(new Callable<String>() {
             @Override
             public String call() throws Exception {
-                Thread.sleep(1000l);
+                Thread.sleep(1000);
                 return "hello thread";
             }
         });
@@ -20,6 +20,8 @@ public class CallAbleFuture {
             System.out.println(future.get());
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            executorService.shutdown();
         }
     }
 }
