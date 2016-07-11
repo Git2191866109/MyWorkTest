@@ -10,16 +10,16 @@ object StreamWordCount {
     LoggerLevels.setStreamingLogLevels()
     val conf = new SparkConf().setAppName("StreamWordCount").setMaster("local[2]")
     val ssc = new StreamingContext(conf, Milliseconds(5000))
-    val lines = ssc.socketTextStream("172.16.0.11", 9999)
-    //val ds = lines.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_+_)
+    val lines = ssc.socketTextStream("10.37.129.181", 9999)
+    val ds = lines.flatMap(_.split(" ")).map((_, 1)).reduceByKey(_+_)
     //ds.print()
 
-    lines.foreachRDD(rdd => {
+    ds.foreachRDD(rdd => {
       //jdbc
       println("rdd ->" + rdd)
       rdd.foreachPartition(it => {
         println("par -> "  + it)
-        it.foreach(x =>println("itcast " + x))
+        it.foreach(x =>println("test " + x))
       })
     })
     ssc.start()
