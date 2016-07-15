@@ -47,7 +47,8 @@ public class SparkTest_3 {
 
         final String KEY_TOP = "ahisrd";
 //        String key = CommonUtil.KEY_TOP + CommonUtil.KEY_JOIN_TYPE + values[HisEnum.USERID.getValue()] + CommonUtil.KEY_JOIN_TYPE + values[HisEnum.FROMTYPE.getValue()];
-        String path = "/Users/mawei/Documents/ideaworkspace/MyWorkTest/worktest/src/main/resources/source/sparktext";
+//        String path = "/Users/mawei/Documents/ideaworkspace/MyWorkTest/worktest/src/main/resources/source/sparktext";
+        String path = "E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\source\\sparktext";
         SparkConf sparkConf = new SparkConf().setMaster("local").setAppName("JavaWordCount");
         JavaSparkContext ctx = new JavaSparkContext(sparkConf);
 //        ctx.setLogLevel("OFF");

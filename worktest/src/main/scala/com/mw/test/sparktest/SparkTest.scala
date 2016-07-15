@@ -4,12 +4,13 @@ import com.mw.test.common.SparkUtils
 import kafka.utils.Logging
 
 /**
- * Created by mawei on 16/7/9.
- */
+  * Created by mawei on 16/7/9.
+  */
 object SparkTest extends Logging {
   def main(args: Array[String]) {
     val sc = SparkUtils.sparkEntrance("appName", "local");
-    val path: String = "/Users/mawei/Documents/ideaworkspace/MyWorkTest/worktest/src/main/resources/source/sparktext"
+//    val path: String = "/Users/mawei/Documents/ideaworkspace/MyWorkTest/worktest/src/main/resources/source/sparktext"
+    val path: String = "E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\source\\sparktext"
     val scRDD = sc.textFile(path)
     //    val flatRDD = scRDD.flatMap(lines => lines.split("\01"))
     /*将去重后,然后按照kw分组,然后flatMap的到tuple的*/
