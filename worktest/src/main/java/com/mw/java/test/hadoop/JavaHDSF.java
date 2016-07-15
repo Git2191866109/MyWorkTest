@@ -14,6 +14,7 @@ import java.net.URI;
 /**
  * Created by mawei on 2016/7/15.
  * java操作HDFS
+ * 有了这个就可以在rdd的foreach中随机的加载数据，但是随着数据的增大这种方式显然不好
  */
 public class JavaHDSF {
     public void WriteFile(String hdfs) throws IOException {

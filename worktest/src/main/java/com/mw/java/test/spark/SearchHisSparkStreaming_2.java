@@ -76,6 +76,7 @@ public class SearchHisSparkStreaming_2 {
                 return new Tuple2<String, String>(key, line);
             }
         });
+
         /*按照key分组*/
         loger.info("按照key分组。。。。。。。");
         JavaPairDStream<String, Iterable<String>> groupKeyResult = pairDStream.groupByKey();
