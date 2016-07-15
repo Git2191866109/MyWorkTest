@@ -5,6 +5,7 @@ package com.mw.java.test;
  */
 public class Constant {
     public static final String BCMB_ = "BCMB_";
+    public static final String KEY_TOP = "ahisrd";
     public static final String BCT_ = "BCT_";
     public static final String BCS_ = "BCS_";
     public static final String _003 = "003";

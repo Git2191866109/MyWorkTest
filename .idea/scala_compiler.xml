@@ -5,7 +5,7 @@
       <parameters>
         <parameter value="-make:transitive" />
         <parameter value="-dependencyfile" />
-        <parameter value="$PROJECT_DIR$/worktest/target/.scala_dependencies" />
+        <parameter value="E:\work_test\MyWorkTest\worktest\target/.scala_dependencies" />
       </parameters>
     </profile>
   </component>
