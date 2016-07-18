@@ -23,7 +23,7 @@ import java.util.function.Consumer;
  */
 public class TestStreaming {
     final static Logger loger = LoggerFactory.getLogger(TestStreaming.class);
-    final String KEY_TOP = "ahisrd";
+    static String KEY_TOP = "ahisrd";
 
     public static void main(String[] args) {
         SparkConf sparkConf = new SparkConf().setAppName("searchHisSpark").setMaster("local[2]");

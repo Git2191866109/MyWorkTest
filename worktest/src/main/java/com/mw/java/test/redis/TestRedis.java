@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
  */
 public class TestRedis {
     private static final Pattern SPACE = Pattern.compile(Constant.HDFSSPLIT);
-    final String KEY_TOP = "ahisrd";
+    static String KEY_TOP = "ahisrd";
 
     public static void main(String[] args) {
         Logger loger = LoggerFactory.getLogger(TestRedis.class);
