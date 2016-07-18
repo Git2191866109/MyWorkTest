@@ -6,7 +6,7 @@ import org.junit.Test;
 
 /**
  * Created by mawei on 2016/7/8.
- * 希尔排序
+ * 简单选择排序
  */
 public class SimpleSelectSort {
     private int[] preAry = null;

@@ -6,7 +6,8 @@ import org.junit.Test;
 
 /**
  * Created by mawei on 2016/7/8.
- * 希尔排序
+ * 堆排序
+ * 若想得到升序，则建立大顶堆，若想得到降序，则建立小顶堆
  */
 public class HeapSort {
     private int[] preAry = null;
@@ -36,20 +37,19 @@ public class HeapSort {
      * 堆实质上是满足如下性质的完全二叉树：树中任一非叶子结点的关键字均大于等于其孩子结点的关键字。例如序列10,15,56,25,30,70就是一个堆，
      * 它对应的完全二叉树如上图所示。这种堆中根结点（称为堆顶）的关键字最小，我们把它称为小根堆。
      * 反之，若完全二叉树中任一非叶子结点的关键字均大于等于其孩子的关键字，则称之为大根堆。
-     * 3.排序过程： 堆排序正是利用小根堆（或大根堆）来选取当前无序区中关键字小（或最大）的记录实现排序的。我们不妨利用大根堆来排序。每一趟排序的基本操作是：
+     * 3. 排序过程： 堆排序正是利用小根堆（或大根堆）来选取当前无序区中关键字小（或最大）的记录实现排序的。我们不妨利用大根堆来排序。每一趟排序的基本操作是：
      * 将当前无序区调整为一个大根堆
      * ，选取关键字最大的堆顶记录，将它和无序区中的最后一个记录交换。这样，正好和直接选择排序相反，有序区是在原记录区的尾部形成并逐步向前扩大到整个记录区。
      */
     /**
      * 排序算法的实现，对数组中指定的元素进行排序
      *
-     * @param array 待排序的数组
-     * @param c     比较器
+     * @param arr 待排序的数组
+     * @param c   比较器
      */
     public void sort(Integer[] arr) {
         // 创建初始堆
         initialHeap(arr);
-
         /*
          * 对初始堆进行循环，且从最后一个节点开始，直到树只有两个节点止 每轮循环后丢弃最后一个叶子节点，再看作一个新的树
          */
@@ -87,15 +87,13 @@ public class HeapSort {
         // 如果有左子树，i * 2为左子树节点索引
         if (parentNodeIndex * 2 <= len) {
             // 如果父节点小于左子树时
-            if ((arr[parentNodeIndex - 1]
-                    .compareTo(arr[parentNodeIndex * 2 - 1])) < 0) {
+            if ((arr[parentNodeIndex - 1].compareTo(arr[parentNodeIndex * 2 - 1])) < 0) {
                 maxValueIndex = parentNodeIndex * 2;// 记录最大索引为左子节点索引
             }
             // 只有在有左子树的前提下才可能有右子树，再进一步断判是否有右子树
             if (parentNodeIndex * 2 + 1 <= len) {
                 // 如果右子树比最大节点更大
-                if ((arr[maxValueIndex - 1]
-                        .compareTo(arr[(parentNodeIndex * 2 + 1) - 1])) < 0) {
+                if ((arr[maxValueIndex - 1].compareTo(arr[(parentNodeIndex * 2 + 1) - 1])) < 0) {
                     maxValueIndex = parentNodeIndex * 2 + 1;// 记录最大索引为右子节点索引
                 }
             }
