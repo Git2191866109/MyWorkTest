@@ -1,4 +1,5 @@
-package com.mw.java.test.designModels.factorymodel;
+package com.mw.java.test.designModels.factorymodel.simplefactory;
+
 
 /**
  * Created by mawei on 16/7/17.
@@ -9,7 +10,7 @@ public class SimplePizzaFactory {
     public Pizza createPizza(String type) {
         if ("cheese".equals(type)) {
             pizza = new CheesePizza();
-        } else if ("cheese".equals(type)) {
+        } else if ("pepperon".equals(type)) {
             pizza = new PepperonPizza();
         }
         return pizza;
