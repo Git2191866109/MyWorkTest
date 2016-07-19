@@ -12,8 +12,7 @@ package com.mw.java.test.sortsMath;
  * 3、Combine: 将两个排序好的子序列合并成一个最终的排序序列。
  */
 public class MergineSort {
-    int a[] = {49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 5, 4, 62, 99, 98, 54, 56, 17, 18, 23, 34, 15, 35, 25,
-            53, 51};
+    int a[] = {49, 38, 65, 97, 76, 13, 27, 49, 78, 34, 12, 64, 5, 4, 62, 99, 98, 54, 56, 17, 18, 23, 34, 15, 35, 25, 53, 51};
 
     public MergineSort() {
         sort(a, 0, a.length - 1);
@@ -41,10 +40,9 @@ public class MergineSort {
     }
 
     /**
-     * @param data排序完的原数组
-     * @param left        起始位置
-     * @param center      中间位置
-     * @param right       结束位置
+     * @param left   起始位置
+     * @param center 中间位置
+     * @param right  结束位置
      */
     public void merge(int[] data, int left, int center, int right) {
         int[] tmpArr = new int[data.length];//中间临时数组
