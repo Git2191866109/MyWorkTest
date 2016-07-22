@@ -4,8 +4,6 @@ package com.mw.test.scalademos.actor
   * Created by ZX on 2016/4/4.
   */
 
-import akka.actor.Actor
-import akka.actor.Actor.Receive
 
 import scala.actors.Actor
 
@@ -31,7 +29,6 @@ class AppleActor extends Actor {
     }
   }
 
-  override def receive: Receive = ???
 }
 
 object AppleActor {
