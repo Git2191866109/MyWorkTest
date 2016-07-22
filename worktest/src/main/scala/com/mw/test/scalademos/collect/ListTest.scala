@@ -61,7 +61,7 @@ object ListTest {
 
      val m = Map(("a", 1))
 
-     l2.fold
+//     l2.fold
 
    }
  }

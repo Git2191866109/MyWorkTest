@@ -61,25 +61,27 @@ object IPLocation {
   def main(args: Array[String]) {
     val conf = new SparkConf().setMaster("local[2]").setAppName("IpLocation")
     val sc = new SparkContext(conf)
-    val ipNumRange2LocationRdd = sc.textFile("c:/ip.txt").map(_.split("\\|")).map(x => (x(2).toString, x(3).toString, x(6).toString))
-    val ipLogRDD = sc.textFile("c:/ip_log").map(_.split("\\|"))
-    //将数据colllect到Driver端
-    val ipNumRange2LocationArray = ipNumRange2LocationRdd.collect()
-    //将变量广播到其他的Executor
-    val broadCastArray = sc.broadcast(ipNumRange2LocationArray)
-
-    val locationAndIp = ipLogRDD.map(_(1)).mapPartitions(it => {
-      val arr = broadCastArray.value
-      it.map(ip => {
-        val ipNum = ip2Long(ip)
-        val index = binarySearch(arr, ipNum)
-        val t = arr(index)
-        (t._3, ip)
-      })
-    })
-    val locationCount = locationAndIp.map(t => (t._1, 1)).reduceByKey(_+_)
-    //println(locationCount.collect().toBuffer)
-    locationCount.foreachPartition(data2MySQL(_))
+    val path = "E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\source\\ip.txt"
+    val ipNumRange2LocationRdd = sc.textFile(path).map(_.split("\\|")).map(x => (x(2).toString, x(3).toString, x(6).toString))
+//    println(ipNumRange2LocationRdd.collect().toBuffer)
+//    val ipLogRDD = sc.textFile("c:/ip_log").map(_.split("\\|"))
+//    //将数据colllect到Driver端
+//    val ipNumRange2LocationArray = ipNumRange2LocationRdd.collect()
+//    //将变量广播到其他的Executor
+//    val broadCastArray = sc.broadcast(ipNumRange2LocationArray)
+//
+//    val locationAndIp = ipLogRDD.map(_(1)).mapPartitions(it => {
+//      val arr = broadCastArray.value
+//      it.map(ip => {
+//        val ipNum = ip2Long(ip)
+//        val index = binarySearch(arr, ipNum)
+//        val t = arr(index)
+//        (t._3, ip)
+//      })
+//    })
+//    val locationCount = locationAndIp.map(t => (t._1, 1)).reduceByKey(_+_)
+//    println(locationCount.collect().toBuffer)
+//    locationCount.foreachPartition(data2MySQL(_))
     sc.stop()
 
   }
