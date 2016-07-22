@@ -5,7 +5,6 @@ package com.mw.java.test;
  */
 public class Constant {
     public static final String BCMB_ = "BCMB_";
-    public static final String KEY_TOP = "ahisrd";
     public static final String BCT_ = "BCT_";
     public static final String BCS_ = "BCS_";
     public static final String _003 = "003";
@@ -58,4 +57,13 @@ public class Constant {
     public static final String STORES_DEL = "storesDel";
     public static final String STORES_UNLOCK = "storesUnlock";
     public static final String GOODS_UNLOCK = "goodsUnlock";
+
+    public static final String ZKQUORUM = "ZKQUORUM";
+    public static final String GROUP = "GROUP";
+    public static final String TOPICSS = "TOPICSS";
+    public static final String NUMTHREAD = "NUMTHREAD";
+
+    public static final String KEY_JOIN_TYPE = "_";
+    public static final String VALUE_JOIN_TYPE = "\001";
+    public static final String KEY_TOP = "ahisrd";
 }
