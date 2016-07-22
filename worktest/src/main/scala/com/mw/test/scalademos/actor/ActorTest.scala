@@ -1,6 +1,7 @@
 package com.mw.test.scalademos.actor
 
-import akka.actor.Actor
+import scala.actors.Actor
+
 
 /**
   * Scala Actor并发编程
@@ -15,7 +16,6 @@ object MyActor1 extends Actor{
     }
   }
 
-  override def receive: Actor.Receive = ???
 }
 
 object MyActor2 extends Actor{
@@ -27,7 +27,6 @@ object MyActor2 extends Actor{
     }
   }
 
-  override def receive: Receive = ???
 }
 
 object ActorTest extends App{
