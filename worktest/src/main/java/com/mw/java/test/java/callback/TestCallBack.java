@@ -9,6 +9,7 @@ public class TestCallBack {
         for (int i = 0; i < n; i++) {
             System.out.println(i);
         }
+        /*上面是业务逻辑处理，下面是调用回调函数*/
         callBack.onComputeEnd();
     }
 
