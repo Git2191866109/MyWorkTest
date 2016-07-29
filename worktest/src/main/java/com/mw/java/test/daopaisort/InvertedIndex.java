@@ -1,6 +1,7 @@
 package com.mw.java.test.daopaisort;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
@@ -21,6 +22,7 @@ import java.util.StringTokenizer;
  */
 public class InvertedIndex {
     final static Logger loger = LoggerFactory.getLogger(InvertedIndex.class);
+
     /**
      * map
      */
@@ -30,15 +32,18 @@ public class InvertedIndex {
         private FileSplit split;            //存储Split对象
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+
             //获得<key,value>对所属的FileSplit对象
             split = (FileSplit) context.getInputSplit();
             StringTokenizer itr = new StringTokenizer(value.toString());
 
             while (itr.hasMoreTokens()) {
                 //key值由单词和URI组成，如"MapReduce:1.txt"
-                keyInfo.set(itr.nextToken() + ":" + split.getPath().toString());
+                keyInfo.set(itr.nextToken() + ":" + split.getPath().getName().toString());
                 // 词频初始为1
                 valueInfo.set("1");
+                loger.debug(keyInfo.toString());
+                loger.debug(valueInfo.toString());
                 context.write(keyInfo, valueInfo);
             }
         }
@@ -62,6 +67,8 @@ public class InvertedIndex {
             info.set(key.toString().substring(splitIndex + 1) + ":" + sum);
             //重新设置key值为单词
             key.set(key.toString().substring(0, splitIndex));
+            loger.debug(key.toString());
+            loger.debug(info.toString());
             context.write(key, info);
         }
     }
@@ -79,6 +86,8 @@ public class InvertedIndex {
                 fileList += value.toString() + ";";
             }
             result.set(fileList);
+            loger.debug(key.toString());
+            loger.debug(result.toString());
             context.write(key, result);
         }
     }
@@ -101,13 +110,20 @@ public class InvertedIndex {
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
-        String input = "E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\daopaisort";
-        String output = "E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\daopaisort\\out";
-        FileInputFormat.addInputPath(job, new Path(input));
-        FileOutputFormat.setOutputPath(job, new Path(output));
+        Path input = new Path("E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\daopaisort");
+        Path output = new Path("E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\daopaisort\\out");
+        recreateFolder(output, conf);
+        FileInputFormat.addInputPath(job, input);
+        FileOutputFormat.setOutputPath(job, output);
 //        FileInputFormat.addInputPath(job, new Path(otherArgs[0]));
 //        FileOutputFormat.setOutputPath(job, new Path(otherArgs[1]));
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 
+    private static void recreateFolder(Path path, Configuration conf) throws IOException {
+        FileSystem fs = path.getFileSystem(conf);
+        if (fs.exists(path)) {
+            fs.delete(path, true);
+        }
+    }
 }
