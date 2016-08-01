@@ -77,7 +77,11 @@ public class MergineSort {
         for (int i = 0; i <= right; i++) {
             data[i] = tmpArr[i];
         }
+    }
 
+
+    public static void main(String[] args) {
+        new MergineSort();
     }
 
 }
