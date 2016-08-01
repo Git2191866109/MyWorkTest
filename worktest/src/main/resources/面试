@@ -1,0 +1,43 @@
+1、MapReduce的shuffle的过程
+2、Kafka有哪几种角色，分别是干什么的？当一个Kafka的bokerid挂掉怎么保证数据的一致性。
+    producer
+    broker
+    consumer
+        默认情况下，Kafka的replication数量为1，每个partition都有一个唯一的leader，所有的读写操作都在leader上完成，follower副本批量从leader上pull数据。
+    一般情况下partition的数量大于等于broker的数量，并且所有partition的leader均匀分布在broker上。follower上的日志和其leader上的完全一样。
+        对于Kafka而言，Kafka存活包含两个条件，
+                一是它必须维护与Zookeeper的session(这个通过Zookeeper的heartbeat机制来实现)。
+                二是follower必须能够及时将leader的writing复制过来，不能“落后太多”。这里所描述的“落后太多”指follower复制的消息落后于leader后的条数超过预定值，
+                    在$KAFKA_HOME/config/server.properties中配置
+
+                    #If a replica falls more than this many messages behind the leader, the leader will remove the follower from ISR and treat it as dead
+                    replica.lag.max.messages=4000
+
+                    #If a follower hasn't sent any fetch requests for this window of time, the leader will remove the follower from ISR (in-sync replicas) and treat it as dead
+                    replica.lag.time.max.ms=10000
+        而Kafka的这种使用“in sync” list的方式
+            则很好的均衡了确保数据不丢失以及吞吐率。一条消息只有被 “in sync” list   里的所有follower都从leader复制过去才会被认为已提交。
+            leader会track“in sync”的node list。如果一个follower宕机，或者落后太多，leader将把它从”in sync” list中移除。
+            follower可以批量的从leader复制数据，这样极大的提高复制性能（批量写磁盘），极大减少了follower与leader的差距（前文有说到，只要follower落后leader不太远，则被认为在“in sync” list里）。
+        另外一个很重要的问题是当leader宕机了，怎样在follower中选举出新的leader。
+            如果leader不在了，新的leader必须拥有原来的leader commit的所有消息。
+            Kafka在Zookeeper中动态维护了一个ISR（in-sync replicas） set，这个set里的所有replica都跟上了leader，只有ISR里的成员才有被选为leader的可能。
+
+
+        consumer只会从每个partition的leader读数据，而与replicaiton factor无关。同样，consumer吞吐率也与同步复制还是异步复制无关。
+
+3、MapReduce过程中导致数据倾斜怎么解决？碰到的问题是什么？
+
+4、Flume运行机制是什么？里面有哪些组件？每个组件是干什么的？
+5、有一个User（全量表）数据是20130101到20140614数据，按当天日期格式分区，查询当天的新增数据。
+6、数组A 中有n个元素，数组B中有m个元素，进行排序，保证时间复杂度为O(m+n)（注意：归并排序）
+7、redis数据存储类型
+8、JVM，GC原理机制以及性能调优
+
+9、多线程，锁在项目中的应用及遇到的问题和解决思路
+
+
+10、对NIO的理解
+11、单例模式手写
+12、Hive的分区和join
+13、数据倾斜
