@@ -1,6 +1,10 @@
 package com.mw.java.test;
 
+import com.mw.java.test.java.map.Person;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,9 +17,25 @@ public class ListTest {
         s.add(2);
         s.add(1);
 //        System.out.println(s.size() == 2 ? s.get(1) : s.get(2));
-        System.out.println(s.toString());
-        System.out.println(s.subList(0,2).toString());
-        System.out.println(s.subList(0,1).toString());
+//        System.out.println(s.toString());
+//        System.out.println(s.subList(0,2).toString());
+//        System.out.println(s.subList(0,1).toString());
+        Collections.sort(s);
+//        System.out.println(s.toString());
+
+        Person p =new Person("张三",12);
+        Person p_2 =new Person("李四",13);
+        Person p_3 =new Person("王五",14);
+        List s_3 = new ArrayList();
+        s_3.add(p);
+        s_3.add(p_2);
+        s_3.add(p_3);
+        Collections.sort(s_3);
+        System.out.println(s_3.toString());
+
+
+
+
     }
 
      /*传进去的只能是3或者2*/

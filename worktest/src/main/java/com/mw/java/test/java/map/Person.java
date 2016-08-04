@@ -2,8 +2,9 @@ package com.mw.java.test.java.map;
 
 /**
  * Created by mawei on 16/7/20.
+ * 实现Comparable接口，可以自己定义按照我们的规则来定义排序
  */
-public class Person {
+public class Person implements Comparable{
     private String name;
     private int age;
 
@@ -53,5 +54,10 @@ public class Person {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
