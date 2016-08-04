@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="winhdpjars">
+    <CLASSES>
+      <root url="file://D:/winhdpjars" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/winhdpjars" />
+    </SOURCES>
+    <jarDirectory url="file://D:/winhdpjars" recursive="false" />
+    <jarDirectory url="file://D:/winhdpjars" recursive="false" type="SOURCES" />
+  </library>
+</component>
