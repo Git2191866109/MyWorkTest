@@ -14,7 +14,7 @@ class Apple {
     Apple(String s) {
         System.out.println(s);
     }
-
+    /*其实这里已经覆盖了默认的构造函数，这里就没有意义了*/
     Apple() {
         System.out.println("App默认构造函数被调用");
     }
