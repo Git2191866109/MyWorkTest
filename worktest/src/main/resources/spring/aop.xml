@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--首先要做的是配置一个切点,切点仅仅是定义了故事发生的地点-->
+    <bean id="spleepPointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+        <!--pattern属性指定了正则表达式，它匹配所有的sleep方法-->
+        <property name="pattern" value=".*sleep"/>
+    </bean>
+    <!--故事发生的时间以及最重要的故事的内容,就是通知了，我们需要把通知跟切点结合起来，我们要使用的通知者是:-->
+    <bean id="sleepHelperAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="advice" ref="sleepHelper"/>
+        <property name="pointcut" ref="spleepPointcut"/>
+    </bean>
+    <!--切入点和通知都配置完成，接下来该调用ProxyFactoryBean产生代理对象了-->
+    <bean id="humanProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="human"/>
+        <property name="interceptorNames" value="sleepHelperAdvisor"/>
+        <property name="proxyInterfaces" value="com.mw.java.test.java.spring.aop.Sleepable"/>
+    </bean>
+
+    <bean id="sleepHelper" class="com.mw.java.test.java.spring.aop.SleepHelper">
+    </bean>
+    <bean id="human" class="com.mw.java.test.java.spring.aop.Human">
+    </bean>
+</beans>

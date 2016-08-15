@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean id="sleepHelper" class="com.mw.java.test.java.spring.aop.SleepHelperAnnotation"/>
+    <aop:config>
+        <aop:aspect ref="sleepHelper">
+            <aop:before method="beforeSleep" pointcut="execution(* *.sleep(..))"/>
+            <aop:after method="afterSleep" pointcut="execution(* *.sleep(..))"/>
+        </aop:aspect>
+    </aop:config>
+    <bean id="human" class="com.mw.java.test.java.spring.aop.Human"/>
+</beans>

@@ -38,5 +38,9 @@
     <!--导入子配置文件-->
     <import resource="classpath:spring/init-test.xml"/>
     <import resource="classpath:spring/properties.xml"/>
+    <!--引入aop文件-->
+    <!--<import resource="classpath:spring/aop.xml"/>-->
+    <!--<import resource="classpath:spring/aop-easy.xml"/>-->
+    <import resource="classpath:spring/aop-biaoqian.xml"/>
 
 </beans>
