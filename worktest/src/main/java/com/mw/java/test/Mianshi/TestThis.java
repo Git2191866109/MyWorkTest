@@ -14,6 +14,7 @@ public class TestThis {
     }
 
     public void countTwo(int num) {
+        /*此处this引用的是全局变量*/
         num = this.num;
         System.out.println("num2= " + this.num + "");
     }
