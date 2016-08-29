@@ -1,0 +1,18 @@
+# 2016-08-29
+DROP TABLE IF EXISTS `pythonid_test`;
+CREATE TABLE `pythonid_test` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `value` varchar(255) DEFAULT NULL,
+  `uid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of pythonid_test
+-- ----------------------------
+INSERT INTO `pythonid_test` VALUES ('1', '1', '2');
+INSERT INTO `pythonid_test` VALUES ('2', '1', '2');
+INSERT INTO `pythonid_test` VALUES ('3', '2', '2');
+INSERT INTO `pythonid_test` VALUES ('4', '2', '1');
+INSERT INTO `pythonid_test` VALUES ('5', '1', '1');
+
