@@ -10,7 +10,7 @@ import org.apache.spark.sql.types.{StringType, StructField, StructType}
   */
 object PeopleDataStatistics2 {
   private val schemaString = "id,gender,height"
-  val path = "E:\\mojiworkspace\\MyWorkTest\\worktest\\src\\main\\resources\\sparksql\\PeopleDataStatistics2.txt"
+  val path = "E:\\mojiworkspace\\MyWorkTest\\worktest\\src\\main\\resources\\sparksql\\PeopleDataStatistics2"
 
   def main(args: Array[String]) {
     val sc = SparkUtils.sparkEntrance("PeopleDataStatistics2", "local", null)
@@ -60,10 +60,11 @@ object PeopleDataStatistics2 {
     println("The Max height for Women:")
     println("<Display #7>")
 
-    /*将dataFrame保存成文件*/
-    val saveOptions = Map("header" -> "true", "path" -> "people.csv")
-    val copyOfpeople = peopleDF.select(peopleDF("id").as("pid"), peopleDF("height"))
-    copyOfpeople.write.mode(SaveMode.Append).options(saveOptions).save("E:\\mojiworkspace\\MyWorkTest\\worktest\\src\\main\\resources\\sparksql")
+    /*将dataFrame保存成文件:未成功*/
+    // TODO
+//    val saveOptions = Map("header" -> "true", "path" -> "people.csv")
+//    val copyOfpeople = peopleDF.select(peopleDF("id").as("pid"), peopleDF("height"))
+//    copyOfpeople.write.format("com.databricks.spark.csv").mode(SaveMode.Overwrite).options(saveOptions).save("E:\\mojiworkspace\\MyWorkTest\\worktest\\src\\main\\resources\\testlaji")
 
   }
 }
