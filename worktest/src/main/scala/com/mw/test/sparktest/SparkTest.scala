@@ -1,6 +1,6 @@
 package com.mw.test.sparktest
 
-import com.mw.test.common.SparkUtils
+import com.mw.test.common.SparkUtils_bak
 import kafka.utils.Logging
 
 /**
@@ -8,7 +8,7 @@ import kafka.utils.Logging
   */
 object SparkTest extends Logging {
   def main(args: Array[String]) {
-    val sc = SparkUtils.sparkEntrance("appName", "local");
+    val sc = SparkUtils_bak.sparkEntrance("appName", "local");
 //    val path: String = "/Users/mawei/Documents/ideaworkspace/MyWorkTest/worktest/src/main/resources/source/sparktext"
     val path: String = "E:\\work_test\\MyWorkTest\\worktest\\src\\main\\resources\\source\\sparktext"
     val scRDD = sc.textFile(path)

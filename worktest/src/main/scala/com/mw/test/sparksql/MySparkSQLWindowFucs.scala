@@ -1,6 +1,6 @@
 package com.mw.test.sparksql
 
-import com.mw.test.common.SparkUtils
+import com.mw.test.common.SparkUtils_bak
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -15,7 +15,7 @@ object MySparkSQLWindowFucs {
       * 2.通过saveAsTable的方式,把DataFrame中的数据保存到Hive的数据仓库中
       * 3.直接可通过HiveContext.table的方法直接加载Hive中的表而生成DataFrame
       */
-    val sc = SparkUtils.sparkEntrance("MySparkSQLWindowFucs", "spark://search-91:7077")
+    val sc = SparkUtils_bak.sparkEntrance("MySparkSQLWindowFucs", "spark://search-91:7077")
     val hiveContext = new HiveContext(sc)
     /**
       * 使用名称为hive的数据,接下来的所有的表操作都位于这个库中
