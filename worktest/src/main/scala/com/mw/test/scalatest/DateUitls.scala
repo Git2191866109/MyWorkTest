@@ -44,23 +44,22 @@ object DateUitls {
   }
 
   def getLastWeekEnd(): String = {
-    var period: String = ""
-    var cal: Calendar = Calendar.getInstance();
-    var df: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
-    //获取本周一的日期
-    period = df.format(cal.getTime())
-    period
+    var weekStart: String = ""
+    var cal = Calendar.getInstance()
+    var df = new SimpleDateFormat("yyyy-MM-dd")
+    cal.set(Calendar.DAY_OF_WEEK, 1)
+    weekStart = df.format(cal.getTime())
+    weekStart
   }
 
   def getLastWeekStart(): String = {
-    var period: String = ""
-    var cal: Calendar = Calendar.getInstance();
-    var df: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY); //这种输出的是上个星期周日的日期，因为老外把周日当成第一天
-    cal.add(Calendar.WEEK_OF_YEAR, -1) // 增加一个星期，才是我们中国人的本周日的日期
-    period = df.format(cal.getTime())
-    period
+    var weekEnd: String = ""
+    var cal = Calendar.getInstance()
+    var df = new SimpleDateFormat("yyyy-MM-dd")
+    cal.add(Calendar.WEEK_OF_MONTH, -1)
+    cal.set(Calendar.DAY_OF_WEEK, 2)
+    weekEnd = df.format(cal.getTime())
+    weekEnd
   }
 
   def timeFormat(time: String): String = {
