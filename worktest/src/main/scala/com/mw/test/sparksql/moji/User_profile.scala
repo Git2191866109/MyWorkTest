@@ -1,5 +1,10 @@
-package com.mw.test.sparksql.moji
+package com.moji.work.user_profile
 
+import java.util.Properties
+
+import com.moji.work.user_profile.common.DateUitls
+import com.moji.work.user_profile.common.SparkUtils
+import com.moji.work.user_profile.common.{DateUitls, SparkUtils}
 import com.mw.test.common.SparkUtils.SparkUtils
 import com.mw.test.scalatest.DateUitls
 import org.apache.spark
@@ -61,7 +66,7 @@ class User_profile {
     SparkUtils.sparkStoped(init())
   }
 
-
+  //  host='ec2-54-223-197-216.cn-north-1.compute.amazonaws.com.cn',user='moji',passwd='BigDataMoji',db='tblu',port=3306,charset="utf8")
 }
 
 object User_profile extends spark.Logging {
@@ -97,28 +102,35 @@ object User_profile extends spark.Logging {
 
       val pre_data = tagDF.join(daysDF, tagDF("tag_uid").equalTo(daysDF("days_uid"))).join(articleDF, tagDF("tag_uid").equalTo(articleDF("art_uid")))
 
-      val pre_result_row = pre_data.map(row => Row(row(0),row(1),row(3),row(5)))
+      val pre_result_row = pre_data.map(row => Row(row(0), row(1), row(3), row(5)))
+
+      //      pre_result_row.foreach(row => print(row(0) + "..." + row(1) + "..." + row(3) + "..." + row(5)))
+      //      pre_result_row.foreach(row => print(row.toString()))
+
+
       //创建JavaRDD<Row>的元数据信息
       val structFields = ArrayBuffer[StructField]()
-      structFields.+= (DataTypes.createStructField("uid", DataTypes.StringType, true))
-      structFields.+= (DataTypes.createStructField("tag_num", DataTypes.IntegerType, true))
-      structFields.+= (DataTypes.createStructField("date_num", DataTypes.IntegerType, true))
-      structFields.+= (DataTypes.createStructField("art_num", DataTypes.IntegerType, true))
+      structFields.+=(DataTypes.createStructField("uid", DataTypes.StringType, true))
+      structFields.+=(DataTypes.createStructField("tag_num", DataTypes.IntegerType, true))
+      structFields.+=(DataTypes.createStructField("date_num", DataTypes.IntegerType, true))
+      structFields.+=(DataTypes.createStructField("art_num", DataTypes.IntegerType, true))
       val structType = DataTypes.createStructType(structFields.toArray)
 
       val restDF = sqlCtx.createDataFrame(pre_result_row, structType)
       restDF.registerTempTable("result_result")
-      sqlCtx.sql("select * from result_result").show
 
+      //      restDF.foreach(row => println("result_result..." + row(0) + "..." + row(1) + "..." + row(2) + "..." + row(3)))
+      //创建Properties存储数据库相关属性
+      val prop = new Properties()
+      prop.put("user", "root")
+      prop.put("password", "123456")
 
+      /**
+        * 将数据追加到数据库
+        * 注意这里的restDF的字段要和数据库建表字段一致
+        */
+      restDF.write.mode("append").jdbc("jdbc:mysql://127.0.0.1:3306/mojitest", "user_select", prop)
 
-//      pre_data.map(row => )
-      //      sqlCtx.sql("select * from t_tag").show()
-      //      sqlCtx.sql("select * from t_days").show()
-      //      sqlCtx.sql("select * from t_article").show()
-      //      println("result_tagDF------- " + tagDF)
-      //      println("result_daysDF------- " + daysDF)
-      //      println("result_articleDF------- " + articleDF)
     } catch {
       case e: Exception => {
         logError("Spark执行失败.log....", e)
