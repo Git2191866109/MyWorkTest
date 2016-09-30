@@ -2,9 +2,6 @@ package com.moji.work.user_profile
 
 import java.util.Properties
 
-import com.moji.work.user_profile.common.DateUitls
-import com.moji.work.user_profile.common.SparkUtils
-import com.moji.work.user_profile.common.{DateUitls, SparkUtils}
 import com.mw.test.common.SparkUtils.SparkUtils
 import com.mw.test.scalatest.DateUitls
 import org.apache.spark
