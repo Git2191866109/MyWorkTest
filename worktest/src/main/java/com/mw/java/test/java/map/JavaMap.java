@@ -18,11 +18,11 @@ public class JavaMap {
      * @param args
      */
     public static void main(String[] args) {
-//        mapbasic();
+        mapbasic();
 //        treeMap();
 //        weakHashMap();
 //        indentityHashMap();
-        sortedHashMap();
+//        sortedHashMap();
 
     }
 
@@ -144,7 +144,7 @@ public class JavaMap {
         }
         System.out.println("========遍历map==============");
         for (Map.Entry<String, Integer> item : data.entrySet()) {
-            System.out.println(item.getKey() + "->" + item.getValue());
+            System.out.println(item.getKey() + " -> " + item.getValue());
         }
     }
 
