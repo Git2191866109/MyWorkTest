@@ -1,5 +1,7 @@
 package com.mw.test.sparktest.sparkfuctest
 
+import com.mw.test.common.SparkUtils.SparkUtils
+
 /**
   * Created by wei.ma on 2016/10/11.
   */
@@ -54,5 +56,12 @@ object ziptest {
 
     val yuansu = List((1,3))
     println(yuansu.unzip)
+
+    val sc = SparkUtils.sparkEntrance("groupbyKeyLearn", "local", null)
+    val rdd1 = sc.parallelize(zipWithIndexs, 3)
+    val rdd2 = sc.parallelize(zipWithIndexsssss, 3)
+    val zipRDD = rdd1.zip(rdd2)
+    zipRDD.foreach(println)
+    sc.stop
   }
 }

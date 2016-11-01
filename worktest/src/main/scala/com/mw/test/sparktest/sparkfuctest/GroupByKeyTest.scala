@@ -9,7 +9,7 @@ object GroupByKeyTest {
   def main(args: Array[String]) {
     val sc = SparkUtils.sparkEntrance("groupbyKeyLearn", "local", null)
     val words = Array("one", "two", "two", "three", "three", "three")
-
+    /*groupByKey(numPartitions):按Key进行分组，返回[K,Iterable[V]]，numPartitions设置分区数，提高作业并行度*/
     val wordPairsRDD = sc.parallelize(words).map(word => (word, 1))
     val wordCountsWithReduce = wordPairsRDD.reduceByKey(_ + _).collect()
     println(wordCountsWithReduce.toBuffer.toString())

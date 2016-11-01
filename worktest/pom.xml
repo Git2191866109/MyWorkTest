@@ -123,6 +123,12 @@
             <artifactId>spark-hive_2.10</artifactId>
             <version>${spark.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.scopt/scopt_2.10 -->
+        <dependency>
+            <groupId>com.github.scopt</groupId>
+            <artifactId>scopt_2.10</artifactId>
+            <version>3.5.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
