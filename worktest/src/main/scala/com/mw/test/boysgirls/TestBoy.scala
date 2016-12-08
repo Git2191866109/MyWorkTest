@@ -1,8 +1,5 @@
 package com.mw.test.boysgirls
 
-/**
-  * Created by ZX on 2016/4/15.
-  */
 object TestBoy {
 
   def main(args: Array[String]) {

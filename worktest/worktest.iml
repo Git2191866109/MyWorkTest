@@ -278,5 +278,6 @@
     <orderEntry type="library" name="Maven: net.sourceforge.nekohtml:nekohtml:1.9.17" level="project" />
     <orderEntry type="library" name="Maven: org.apache.lucene:lucene-analyzers-common:4.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:3.14" level="project" />
+    <orderEntry type="library" name="jblas-1.2.4-SNAPSHOT" level="project" />
   </component>
 </module>

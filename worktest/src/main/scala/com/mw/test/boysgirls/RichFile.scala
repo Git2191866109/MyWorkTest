@@ -4,10 +4,6 @@ import java.io.File
 
 import scala.io.Source
 
-/**
-  * Created by ZX on 2016/4/9.
-  */
-
 
 object Context {
   //implicit def fileToRichFile(file: File) = new RichFile(file)

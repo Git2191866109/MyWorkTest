@@ -1,5 +1,6 @@
 package com.mw.test.sparktest
 
+import com.mw.test.common.SparkUtils.SparkUtils
 import com.mw.test.common.SparkUtils_bak
 
 /**
@@ -7,10 +8,9 @@ import com.mw.test.common.SparkUtils_bak
   */
 object Test {
   def main(args: Array[String]) {
-//    val sc = SparkUtils.sparkEntrance("app","local")
-    val str = "qf Aqf11 A110 A1 Aiiii A1234 A10 A111111"
-
-    val result =str.split(" ").toList
-    print(result.toBuffer)
+    val sc = SparkUtils.sparkEntrance("app","local",null)
+    val result =sc.textFile("E:\\mojiworkspace\\MyWorkTest\\worktest\\src\\main\\scala\\com\\mw\\test\\sparktest\\dfvgbh").map(str => str.split(":"))
+      .map(x=>(x(0),x(1).replace("[","").replace("]","").split(",").map(_.toDouble)))
+    result.collect.foreach(x => println(x._1,x._2.toBuffer))
   }
 }

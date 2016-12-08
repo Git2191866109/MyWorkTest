@@ -21,6 +21,7 @@ object ImmutListDemo extends App {
 
    //将lst0插入到lst1前面生成一个新的集合
    val lst9 = lst1.:::(lst0)
+   val lst19 = lst1 :::lst0
 
    println(lst9)
 

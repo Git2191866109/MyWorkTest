@@ -1,20 +1,16 @@
 package com.mw.test.boysgirls
 
-/**
-  * Created by ZX on 2016/4/15.
-  */
 class MissRight[T : Ordering] {
 
-//  def choose(first: T, second : T)(implicit ord : T => Ordered[T]): T = {
-//    if(first > second) first else second
-//  }
-
-  def select(first: T, second : T) : T = {
-    //val ord = implicitly[Ordering[T]]
-    import Ordered.orderingToOrdered
+  def choose(first: T, second : T)(implicit ord : T => Ordered[T]): T = {
     if(first > second) first else second
   }
 
+  def select(first: T, second : T) : T = {
+    val ord = implicitly[Ordering[T]]
+    import Ordered.orderingToOrdered
+    if(first > second) first else second
+  }
 }
 
 object  MissRight {
@@ -25,5 +21,6 @@ object  MissRight {
     val g2 = new Girl("b", 90, 18)
 
     println(mr.select(g1, g2).name)
+    println(mr.choose(g1, g2).name)
   }
 }

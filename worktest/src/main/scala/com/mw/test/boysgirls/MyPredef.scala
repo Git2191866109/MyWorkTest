@@ -1,8 +1,5 @@
 package com.mw.test.boysgirls
 
-/**
-  * Created by ZX on 2016/4/15.
-  */
 object MyPredef {
 
   implicit def girl2Ordered(girl: Girl) = new Ordered[Girl] {
