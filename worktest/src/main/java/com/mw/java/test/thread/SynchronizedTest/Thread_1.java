@@ -18,11 +18,12 @@ public class Thread_1 implements Runnable {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Thread_1 t1 = new Thread_1();
         Thread ta = new Thread(t1, "A");
         Thread tb = new Thread(t1, "B");
         ta.start();
+        Thread.sleep(1000);
         tb.start();
     }
 

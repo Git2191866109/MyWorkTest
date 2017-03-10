@@ -8,9 +8,9 @@ public class Thread_2 {
         synchronized (this) {
             int i = 5;
             while (i-- > 0) {
-                System.out.println(Thread.currentThread().getName() + " : " + i);
+                System.out.println(Thread.currentThread().getName() + " 同步方法: " + i);
                 try {
-                    Thread.sleep(400);
+                    Thread.sleep(2000);
                 } catch (InterruptedException ie) {
                 }
             }
@@ -21,9 +21,9 @@ public class Thread_2 {
     public void m4t2() {
         int i = 5;
         while (i-- > 0) {
-            System.out.println(Thread.currentThread().getName() + " : " + i);
+            System.out.println(Thread.currentThread().getName() + " 非同步方法: " + i);
             try {
-                Thread.sleep(500);
+                Thread.sleep(1000);
             } catch (InterruptedException ie) {
             }
         }
@@ -32,10 +32,10 @@ public class Thread_2 {
     /*尤其关键的是，当一个线程访问object的一个synchronized(this)同步代码块时，其他线程对object中所有其它synchronized(this)同步代码块的访问将被阻塞。*/
     public void m4t3() {
         synchronized (this) {
-            System.out.println("开始被阻塞的线程......");
+//            System.out.println("开始被阻塞的线程......");
             int i = 5;
             while (i-- > 0) {
-                System.out.println(Thread.currentThread().getName() + " : " + i);
+                System.out.println(Thread.currentThread().getName() + " 开始被阻塞的线程: " + i);
                 try {
                     Thread.sleep(200);
                 } catch (InterruptedException ie) {

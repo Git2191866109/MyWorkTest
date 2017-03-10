@@ -31,4 +31,16 @@ public class TreadUpper {
      * 三、尤其关键的是，当一个线程访问object的一个synchronized(this)同步代码块时，其他线程对object中所有其它synchronized(this)同步代码块的访问将被阻塞。
      * 四、第三个例子同样适用其它同步代码块。也就是说，当一个线程访问object的一个synchronized(this)同步代码块时，它就获得了这个object的对象锁。结果，其它线程对该object对象所有同步代码部分的访问都被暂时阻塞。
      */
+
+    /**
+     * synchronized与static synchronized 的区别
+     * synchronized 对当前类的实例对象加锁，注意是：“类的当前实例”， 一个类的两个不同实例就没有这种约束了
+     * static synchronized  恰好就是要控制类的所有实例的访问，static synchronized是
+     *      限制线程同时访问jvm中该类的所有实例 同时访问对应的代码快
+     *  http://www.cnblogs.com/techyc/archive/2013/03/19/2969677.html
+     * synchronized相当于 this.synchronized，是当前对象的锁
+     * static synchronized相当于Something.synchronized.  是类的锁
+     * 他们之间不会产生互斥
+     * 最后要留意的是：synchronized并不能继承，子类覆盖父类synchronized方法时，一定也要在前面加上synchronized关键字；但子类未重写该方法
+     */
 }
